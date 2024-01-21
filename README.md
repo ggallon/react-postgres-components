@@ -17,13 +17,58 @@ Check out the [demos & how it works](https://react-postgres-components.vercel.ap
 
 ### Deployment
 
-- Make sure the Vercel project is connected to a Vercel Postgres (Neon) database.
-- Deploy!
+## Setting it up
+
+1. Create a Vercel Postgres (Neon) database and link it to your project
+2. Go to its settings and copy the `psql` command
+3. Add `-f sql/init.sql` like so to populate the database with some data:
+   ```sh
+   psql "postgres://{user}:{password}@{name}.{location}.postgres.vercel-storage.com:5432/verceldb" -f init.sql
+   ```
+4. Install plv8 extention:
+   ```sql
+   CREATE EXTENSION IF NOT EXISTS plv8;
+   ```
+5. Deploy!
 
 ### Local dev
 
 - Run `vc env pull` to get a `.env.local` file with the `POSTGRES_URL` credential
 - Run `pnpm dev` to start developing
+
+### Check the list of installed extensions
+
+```sql
+SELECT * FROM pg_extension;
+```
+
+### Check plv8 extention version
+
+```sql
+SELECT plv8_version();
+```
+
+### Install plv8 extention
+
+```sql
+CREATE EXTENSION IF NOT EXISTS plv8;
+```
+
+### Check the list of installed functions
+
+```sql
+SELECT
+    n.nspname AS function_schema,
+    p.proname AS function_name
+FROM
+    pg_proc p
+    LEFT JOIN pg_namespace n ON p.pronamespace = n.oid
+WHERE
+    n.nspname NOT IN ('pg_catalog', 'information_schema')
+ORDER BY
+    function_schema,
+    function_name;
+```
 
 ### License & Credit
 
