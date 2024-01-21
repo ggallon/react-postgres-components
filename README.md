@@ -15,9 +15,9 @@ export default function helloWorld () => {
 
 Check out the [demos & how it works](https://react-postgres-components.vercel.app/).
 
-### Deployment
+## Deployment
 
-## Setting it up
+### Setting it up
 
 1. Create a Vercel Postgres (Neon) database and link it to your project
 2. Go to its settings and copy the `psql` command
