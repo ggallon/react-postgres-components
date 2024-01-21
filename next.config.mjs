@@ -4,6 +4,11 @@ import path from "path";
 const __dirname = new URL(".", import.meta.url).pathname;
 
 const nextConfig = {
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
   experimental: {
     ppr: true,
     serverComponentsExternalPackages: ["isolated-vm", "esbuild"],
