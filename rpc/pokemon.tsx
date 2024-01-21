@@ -7,9 +7,12 @@ export default function Pokemon() {
           <li className="inline-flex flex-col items-center justify-center border bg-white border-gray-400 dark:bg-gray-700 dark:border-gray-500 p-3">
             <img
               alt={row.name}
+              loading="lazy"
+              decoding="async"
               width={96}
               height={96}
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${row.id}.png`}
+              className="rendering-pixelated"
             />
             {row.name}
           </li>

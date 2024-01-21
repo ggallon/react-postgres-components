@@ -1,7 +1,9 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { useFormState, useFormStatus } from "react-dom";
+import { prefetchDNS, useFormState, useFormStatus } from "react-dom";
 import { Loader2, Rocket } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+
 import PostgresVersion from "@/rpc/postgres-version";
 import Pokemon from "@/rpc/pokemon";
 import { track } from "@vercel/analytics";
@@ -11,6 +13,7 @@ export function DemoButtons({
 }: {
   pokemonFunctionCode: React.ReactNode;
 }) {
+  prefetchDNS("https://raw.githubusercontent.com/");
   const [versionState, versionFormAction] = useFormState(PostgresVersion, null);
   const [pokemonState, pokemonFormAction] = useFormState(Pokemon, null);
 

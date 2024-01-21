@@ -49,3 +49,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+.rendering-pixelated {
+  image-rendering: pixelated;
+}
