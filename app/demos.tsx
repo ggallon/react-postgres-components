@@ -6,10 +6,8 @@ import { Loader2, Rocket } from "lucide-react";
 
 import { Pokeball } from "@/components/icons";
 import { Button } from "@/components/ui/button";
-
-import PostgresVersion from "@/rpc/postgres-version";
 import Pokemon from "@/rpc/pokemon";
-import { track } from "@vercel/analytics";
+import PostgresVersion from "@/rpc/postgres-version";
 
 export function DemoButtons({
   pokemonFunctionCode,
@@ -33,10 +31,10 @@ export function DemoButtons({
       </div>
 
       {pokemonState ? (
-        <div className="p-5 my-5 bg-yellow-100">
+        <div className="my-5 bg-yellow-100 p-5">
           {pokemonState}
 
-          <div className="text-xs text-gray-400 text-center mt-2">
+          <div className="mt-2 text-center text-xs text-gray-400">
             Images courtesy of PokeAPI – Pokemon is © 1996-2023 Nintendo,
             Creatures, Inc., GAME FREAK
           </div>
@@ -49,7 +47,7 @@ export function DemoButtons({
       ) : null}
 
       {versionState ? (
-        <div className="p-5 my-5 bg-yellow-100">{versionState}</div>
+        <div className="my-5 bg-yellow-100 p-5">{versionState}</div>
       ) : null}
     </>
   );

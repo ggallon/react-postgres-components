@@ -1,12 +1,14 @@
 "use client";
+
+import { ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { track } from "@vercel/analytics";
+
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { ChevronRight } from "lucide-react";
-import { useEffect, useState } from "react";
-import { track } from "@vercel/analytics";
 
 export function Question({
   id,
@@ -40,13 +42,13 @@ export function Question({
       onOpenChange={(newOpen) => setOpen(newOpen)}
       className="my-5"
     >
-      <CollapsibleTrigger className="font-bold block w-full text-left">
+      <CollapsibleTrigger className="block w-full text-left font-bold">
         <a
           className="flex items-center hover:underline"
           id={id}
           href={`#${id}`}
         >
-          <ChevronRight className="inline-block mr-1" size={16} />
+          <ChevronRight className="mr-1 inline-block" size={16} />
           {title}
         </a>
       </CollapsibleTrigger>

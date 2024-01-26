@@ -9,14 +9,14 @@ import { FAQ } from "./faq";
 
 export default function Home() {
   return (
-    <main className="px-5 md:px-10 md:py-5 max-w-3xl">
+    <main className="max-w-3xl px-5 md:px-10 md:py-5">
       <div className="my-5">
         <Link href="/">
           <Elephant />
         </Link>
       </div>
 
-      <h1 className="text-xl font-semibold my-5">
+      <h1 className="my-5 text-xl font-semibold">
         <Link href="/">React Postgres Components</Link>
       </h1>
 
@@ -24,11 +24,11 @@ export default function Home() {
         <p className="my-5 font-mono">
           An experiment on deploying remote functions that run <em>inside</em>{" "}
           Postgres using v8, run React SSR, and are easily defined in a{" "}
-          <code className="bg-gray-100 rounded-md p-1">rpc/</code> directory:
+          <code className="rounded-md bg-gray-100 p-1">rpc/</code> directory:
         </p>
 
-        <pre className="my-5 bg-gray-100 p-5 pt-4 rounded-md overflow-auto">
-          <p className="text-gray-500 text-sm mb-2">
+        <pre className="my-5 overflow-auto rounded-md bg-gray-100 p-5 pt-4">
+          <p className="mb-2 text-sm text-gray-500">
             <SourceIcon className="mr-1 inline-block" />
             rpc/hello-world.tsx
           </p>
@@ -47,9 +47,9 @@ export default function Home() {
           And then using them in frontend SSR like this:
         </p>
 
-        <pre className="my-5 bg-gray-100 p-5 pt-4 rounded-md overflow-auto">
-          <p className="text-gray-500 text-sm mb-2">
-            <SourceIcon />
+        <pre className="my-5 overflow-auto rounded-md bg-gray-100 p-5 pt-4">
+          <p className="mb-2 text-sm text-gray-500">
+            <SourceIcon className="mr-1 inline-block" />
             app/page.tsx
           </p>
           <code
@@ -67,9 +67,9 @@ export default function Page() {
 
         <DemoButtons
           pokemonFunctionCode={
-            <pre className="bg-gray-100 p-5 pt-4 rounded-md overflow-auto">
-              <p className="text-gray-500 text-sm mb-2">
-                <SourceIcon />
+            <pre className="overflow-auto rounded-md bg-gray-100 p-5 pt-4">
+              <p className="mb-2 text-sm text-gray-500">
+                <SourceIcon className="mr-1 inline-block" />
                 rpc/pokemon.tsx
               </p>
               <code
@@ -102,7 +102,7 @@ export default function Page() {
           }
         />
 
-        <h1 className="text-xl font-semibold my-5">
+        <h1 className="my-5 text-xl font-semibold">
           <a href="#how" id="how" className="hover:underline">
             How does it work?
           </a>
@@ -118,7 +118,7 @@ export default function Page() {
             V8
           </a>
           ), the functions in the{" "}
-          <code className="bg-gray-100 rounded-md p-1">rpc/</code> folder are
+          <code className="rounded-md bg-gray-100 p-1">rpc/</code> folder are
           bundled and inserted into Postgres as part of the{" "}
           <a
             href="https://vercel.com/products/managed-infrastructure"
@@ -137,7 +137,7 @@ export default function Page() {
           experience needed to account for important differences:
         </p>
 
-        <ul className="my-5 font-mono list-none list-inside">
+        <ul className="my-5 list-inside list-none font-mono">
           <li className="my-2">
             <span className="text-gray-400">- </span>Different runtime APIs
           </li>
@@ -154,45 +154,45 @@ export default function Page() {
             className="link"
             target="_blank"
           >
-            <code className="bg-gray-100 rounded-md p-1">isolated-vm</code>
+            <code className="rounded-md bg-gray-100 p-1">isolated-vm</code>
           </a>{" "}
           project transparently during local dev.
         </p>
 
         <p className="my-5 font-mono">
-          For each <code className="bg-gray-100 rounded-md p-1">rpc/</code>{" "}
+          For each <code className="rounded-md bg-gray-100 p-1">rpc/</code>{" "}
           function, a V8 Isolate is created without access to Node.js APIs. Our
           runtime is loaded on top (like{" "}
-          <code className="bg-gray-100 rounded-md p-1">sql</code> and{" "}
-          <code className="bg-gray-100 rounded-md p-1">TextEncoder</code>).
+          <code className="rounded-md bg-gray-100 p-1">sql</code> and{" "}
+          <code className="rounded-md bg-gray-100 p-1">TextEncoder</code>).
         </p>
 
         <p className="my-5 font-mono">
           To preserve the synchronous{" "}
-          <code className="bg-gray-100 rounded-md p-1">plv8.execute</code> API
+          <code className="rounded-md bg-gray-100 p-1">plv8.execute</code> API
           semantics, we use{" "}
           <a
             href="https://github.com/laverdet/isolated-vm?tab=readme-ov-file#referenceapplysyncpromisereceiver-arguments-options"
             target="_blank"
             className="link"
           >
-            <code className="bg-gray-100 rounded-md p-1">applySyncPromise</code>
+            <code className="rounded-md bg-gray-100 p-1">applySyncPromise</code>
           </a>{" "}
           which pauses the isolate until the promise that dispatches the query
           is resolved outside of it.
         </p>
 
-        <h3 className="text-lg font-semibold my-5">Production</h3>
+        <h3 className="my-5 text-lg font-semibold">Production</h3>
 
         <p className="my-5 font-mono">
           To invoke our functions in production,{" "}
-          <code className="bg-gray-100 rounded-md p-1">{"<HelloWorld />"}</code>{" "}
+          <code className="rounded-md bg-gray-100 p-1">{"<HelloWorld />"}</code>{" "}
           is issuing a{" "}
-          <span className="bg-gray-100 rounded-md p-1">
+          <span className="rounded-md bg-gray-100 p-1">
             SELECT helloWorld()
           </span>{" "}
-          query to Postgres, which is then streamed to the client via
-          React Server Components.
+          query to Postgres, which is then streamed to the client via React
+          Server Components.
         </p>
 
         <p className="my-5 font-mono">
@@ -203,7 +203,7 @@ export default function Page() {
 
         <FAQ />
 
-        <h1 className="text-xl font-semibold my-5 mt-7">
+        <h1 className="my-5 mt-7 text-xl font-semibold">
           <a href="#get" id="get" className="hover:underline">
             Getting it
           </a>
@@ -214,9 +214,9 @@ export default function Page() {
           <a
             href="https://github.com/rauchg/react-postgres-components"
             target="_blank"
-            className="link font-semibold whitespace-nowrap"
+            className="link whitespace-nowrap font-semibold"
           >
-            <Github className="inline-block mr-1" size={16} />
+            <Github className="mr-1 inline-block" size={16} />
             rauchg/react-postgres-components
           </a>{" "}
           and released under the MIT license. Elephant icon by{" "}
